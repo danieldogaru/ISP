@@ -1,3 +1,5 @@
+package Classes;
+
 import java.util.Scanner;
 
 public class Airplane {
@@ -20,7 +22,7 @@ public class Airplane {
     }
 
     public boolean RequestLanding(Tower tower){
-        if( status != "PendingLanding" ){
+        if( status != "PendingLanding" && status != "GoneAround" ){
             tower.DenyLandingPermission(this);
             return false;
         }
@@ -53,7 +55,7 @@ public class Airplane {
     }
 
     public boolean RequestTurnAround(){
-        if( this.status == "LandingGranted" ){
+        if( this.status == "LandingGranted" || this.status == "PendingLadning" ){
             this.status = "GoneAround";
             return true;
         }
@@ -62,27 +64,29 @@ public class Airplane {
     }
 
     public Weather RequestWeatherData(){
-        System.out.println();
+        return new Weather(new Wind(20,30), "SUNNY", 1024, 300);
     }
 
     public void RequestEmergency(){
-
+          if(this.status != "PendingTakeoff") {
+              this.status = "EmergencyLanding" ;
+          }
     }
 
     public void TakeOff(){
-
+            this.status = "TakeoffExecuted"  ;
     }
 
     public void Land(){
-
+             this.status = "Landing";
     }
 
     public void TurnAround(){
-
+           this.status = "TurningAround";
     }
 
     public void EmergencyLanding(){
-
+           this.status = "EmergencyLandingInProgress";
     }
 
     public AirplaneData getAirplaneData() {

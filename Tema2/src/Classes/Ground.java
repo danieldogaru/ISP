@@ -1,3 +1,5 @@
+package Classes;
+
 import java.util.Vector;
 public class Ground {
     private Vector<Person>   personal;
@@ -10,6 +12,10 @@ public class Ground {
         this.airplanes = airplanes;
         this.frequency = frequency;
         this.numAirplanes = airplanes.size();
+    }
+
+    public Ground(){
+
     }
 
     public void AssignPerson(Person person, Airplane airplane){
